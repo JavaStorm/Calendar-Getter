@@ -1,10 +1,12 @@
 import requests
 import json
 import datetime
+import ConfigHandler
 
+configData = ConfigHandler.loadConfig('resources/config.json')
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 creds = None
-key = ""
+key = configData["APIkey"]
 service = None
 
 
@@ -15,9 +17,9 @@ def get():
     then = then.isoformat() + 'Z'
     singleEvents = True
     orderBy = "startTime"
-    link = ""
+    link = configData["calendarLink"]
     response = requests.get(link, params={"key": key, 'timeMin': now, "timeMax": then, 'orderBy': orderBy, 'singleEvents': singleEvents})
-    return json.load(response.text)
+    return response.text
 
 def makeList():
     pass
