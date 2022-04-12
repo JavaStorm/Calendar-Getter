@@ -1,4 +1,5 @@
 import requests
+import json
 import datetime
 
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -16,7 +17,7 @@ def get():
     orderBy = "startTime"
     link = ""
     response = requests.get(link, params={"key": key, 'timeMin': now, "timeMax": then, 'orderBy': orderBy, 'singleEvents': singleEvents})
-    return response.text
+    return json.load(response.text)
 
 def makeList():
     pass
