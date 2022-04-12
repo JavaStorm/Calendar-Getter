@@ -1,4 +1,4 @@
 .idea
 *.iml
 .git
-resources/config.json
+src/resources/config.json
