@@ -17,8 +17,8 @@ def get():
     then = then.isoformat() + 'Z'
     singleEvents = True
     orderBy = "startTime"
-    link = configData["calendarLink"]
-    response = requests.get(link, params={"key": key, 'timeMin': now, "timeMax": then, 'orderBy': orderBy, 'singleEvents': singleEvents})
+    link = "https://www.googleapis.com/calendar/v3/calendars/" + configData["calendarID"] + "/events"
+    response = requests.get(url=link, params={"key": key, 'timeMin': now, "timeMax": then, 'orderBy': orderBy, 'singleEvents': singleEvents})
     return response.text
 
 def makeList():
